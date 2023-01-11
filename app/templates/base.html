@@ -9,8 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
-    {% block navbar  %}{% endblock %}
+<body class="bg-primary" style="--bs-bg-opacity: .5;">
+    {% include 'navbar.html' %}
     <div class="container">
         {% include 'alerts.html' %}
         {% block content %}{% endblock %}
