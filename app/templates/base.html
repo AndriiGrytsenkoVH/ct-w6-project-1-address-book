@@ -12,7 +12,7 @@
 <body>
     {% block navbar  %}{% endblock %}
     <div class="container">
-        {% block alerts %}{% endblock %}
+        {% include 'alerts.html' %}
         {% block content %}{% endblock %}
     </div>
 </body>

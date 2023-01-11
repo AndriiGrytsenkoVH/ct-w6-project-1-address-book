@@ -9,8 +9,33 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Sign Up</h1>
 
-    {{ form.first_name }}
+    <form action="" class="bg-white rounded mt-3 p-5" method="post">
+        <h1 class="text-center">Sign Up</h1>
+
+        <!-- TODO research why this token needs to be on the page and what it dose -->
+        {{ form.csrf_token }}
+
+        {{ form.first_name.label }} <strong class="text-danger">*</strong>
+        {{ form.first_name(class="form-control", placeholder='First Name') }}
+
+        {{ form.last_name.label }}
+        {{ form.last_name(class="form-control", placeholder='Last Name') }}
+
+        {{ form.email.label }} <strong class="text-danger">*</strong>
+        {{ form.email(class="form-control", placeholder='Enter Email') }}
+
+        {{ form.username.label }} <strong class="text-danger">*</strong>
+        {{ form.username(class="form-control", placeholder='Enter Username') }}
+
+        {{ form.password.label }} <strong class="text-danger">*</strong>
+        {{ form.password(class="form-control", placeholder='Enter Password') }}
+
+        {{ form.confirm_password.label }} <strong class="text-danger">*</strong>
+        {{ form.confirm_password(class="form-control", placeholder='Confirm Password') }}
+
+        {{ form.submit(class="btn-primary mt-3 w-100", placeholder='Confirm Password') }}
+
+    </form>
 
 {% endblock %}
