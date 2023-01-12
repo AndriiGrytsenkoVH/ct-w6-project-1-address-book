@@ -22,7 +22,7 @@ def signup():
         print(first_name, last_name, email, username, password)
 
         # TODO research a better way to check for user
-        check_user = User.query.filter( (User.username == username) | (User.email == email) ).all()
+        check_user = User.query.filter( (User.username == username) | (User.email == email) ).first()
         if check_user:
             flash('A user with that email and/or username already exists.', 'danger')
             # TODO make so that info remains on page in case of failed user check

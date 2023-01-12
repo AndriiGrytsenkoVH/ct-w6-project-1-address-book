@@ -23,3 +23,14 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.id} | {self.username}>"
+
+class Address(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    # Last name is optional
+    last_name = db.Column(db.String(50))
+    phone_number = db.Column(db.String(50))
+    address = db.Column(db.String(50))
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    # TODO make a foreign key
+    user_id = db.Column(db.Integer)
