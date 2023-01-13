@@ -10,3 +10,15 @@ class SignUpForm (FlaskForm):
     password = PasswordField("Password", validators=[InputRequired()])
     confirm_password = PasswordField("Confirm Password", validators=[InputRequired(), EqualTo('password')])
     submit = SubmitField()
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField()
+
+class NewAddressForm(FlaskForm):
+    first_name = StringField('First Name', validators=[InputRequired()])
+    last_name = StringField('Last Name')
+    phone_number = StringField('Phone Number', validators=[InputRequired()])
+    address = StringField('Address', validators=[InputRequired()])
+    submit = SubmitField()
