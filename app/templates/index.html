@@ -5,5 +5,29 @@
 {% endblock %}
 
 {% block content %}
-    <h1>SOME CONTENT</h1>
+    {% if current_user.is_authenticated  %}
+        <h1 class="text-center">Welcome back, {{current_user.first_name}} {{current_user.last_name}} !</h1>
+        <h2 class="text-center">Here is you Address book</h2>
+        {% for address in addresses %}
+            <div class="card my-3">
+                <div class="card-header">
+                    {{address.first_name}} {{address.last_name}}
+                </div>
+                <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{address.address}}</p>
+                    <p>{{address.phone_number}}</p>
+                    <footer class="blockquote-footer">
+                        <cite title="Source Title">
+                            {{ address.date_created.strftime('%A, %B %d at %I:%M%p') }}
+                        </cite>
+                    </footer>
+                </blockquote>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1 class="text-center">Welcome to the Address Book</h1>
+        <h2 class="text-center">Login or Sign Up to start</h2>
+    {% endif %}
 {% endblock %}

@@ -7,13 +7,16 @@ from flask_login import login_user, logout_user, login_required, current_user
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if current_user.is_authenticated:
+        addresses = Address.query.filter_by(user_id=current_user.id).all()
+    else:
+        addresses = []
+    return render_template('index.html', addresses=addresses)
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     form = SignUpForm()
 
-    # print(form.data)
     if form.validate_on_submit():
         print('From Submitted and Validated')
         first_name = form.first_name.data
@@ -32,6 +35,7 @@ def signup():
 
         new_user = User(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
         flash(f'Thank you for signing up, {new_user.first_name} {new_user.last_name}', 'success')
+        login_user(new_user)
         return redirect(url_for('index'))
 
     return render_template('signup.html', form=form)
