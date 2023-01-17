@@ -16,7 +16,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     submit = SubmitField()
 
-class NewAddressForm(FlaskForm):
+class AddressForm(FlaskForm):
     first_name = StringField('First Name', validators=[InputRequired()])
     last_name = StringField('Last Name')
     phone_number = StringField('Phone Number', validators=[InputRequired()])

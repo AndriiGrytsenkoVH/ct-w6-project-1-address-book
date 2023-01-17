@@ -14,15 +14,40 @@
                     {{address.first_name}} {{address.last_name}}
                 </div>
                 <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p>{{address.address}}</p>
-                    <p>{{address.phone_number}}</p>
-                    <footer class="blockquote-footer">
-                        <cite title="Source Title">
-                            {{ address.date_created.strftime('%A, %B %d at %I:%M%p') }}
-                        </cite>
-                    </footer>
-                </blockquote>
+                    <blockquote class="blockquote mb-0">
+                        <p>{{address.address}}</p>
+                        <p>{{address.phone_number}}</p>
+                        <footer class="blockquote-footer">
+                            <cite title="Source Title">
+                                {{ address.date_created.strftime('%A, %B %d at %I:%M%p') }}
+                            </cite>
+                        </footer>
+                    </blockquote>
+
+                    <a href="{{ url_for('edit_address', address_id=address.address_id) }}" class="btn btn-success">Edit Address</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{address.address_id}}">
+                        Delete Post
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal_{{address.address_id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete address for {{ address.first_name }} {{ address.last_name }}?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                Are you sure you want to delete address <strong>{{ address.address }}</strong>? This action cannot be undone.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a href="{{ url_for('delete_address', address_id=address.address_id) }}" class="btn btn-danger">Delete Address</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endfor %}
